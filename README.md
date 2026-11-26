@@ -1,78 +1,124 @@
-# Sentiment Analysis Web App
+# Claude-Style Sentiment Analysis Web App
 
-## Overview
-This project is a web application for sentiment analysis. It allows users to input text and receive a sentiment analysis score indicating whether the sentiment is positive, negative, or neutral.
+A clean, minimalist web application for real-time text sentiment analysis featuring a **Claude-inspired dark chat interface**. Built with Python, Flask, and TextBlob/NLTK.
 
-## Live Demo
-You can access the live web application [here](https://sentiment-analysis-ngla.onrender.com/).
+---
 
-## Project Images
+## 📸 Overview
 
-![Screenshot 1](./images/img_1.png)
-*Figure 1:Shows the web add interface .*
+The interface mimics Claude's conversational experience:
+- **Claude aesthetic**: Sleek dark theme, subtle terracotta accents, and smooth typography.
+- **Conversational workflow**: Type or paste any sentence, tweet, or review to receive instant inline sentiment feedback.
+- **Real-time feedback**: Animated typing indicator with color-coded classification (Positive, Negative, or Neutral) and descriptive sentiment insights.
+- **Interactive quick suggestions**: One-click prompt chips on the welcome screen.
+- **Keyboard shortcuts**: Press `Enter` to analyze and `Shift + Enter` for multi-line input.
 
-![Screenshot 2](./images/img_2.png)
-*Figure 2: You can either add a CSV file or add a single line text to check its sentiment.*
+---
 
-![Screenshot 3](./images/img_3.png)
-*Figure 3: Result of sentiment analysis of CSV file .*
+## 🛠️ Tech Stack
 
-![Screenshot 4](./images/img_4.png)
-*Figure 4: Result of sentiment analysis of Text input.*
+- **Backend**: Python 3, [Flask](https://flask.palletsprojects.com/)
+- **NLP Engine**: [TextBlob](https://textblob.readthedocs.io/), [NLTK](https://www.nltk.org/)
+- **Frontend**: HTML5, Vanilla JavaScript, CSS3 (CSS Variables, Flexbox, responsive design)
 
-## Features
-- **User Input**: Users can input text directly into the web app.
-- **Sentiment Analysis**: The app processes the input text and returns a sentiment score.
-- **Real-time Results**: The sentiment analysis is performed in real-time, providing immediate feedback.
+---
 
-## Technologies Used
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Python, Flask
-- **Machine Learning**: Scikit-learn, NLTK
-- **Deployment**: Render
+## 📂 Project Structure
 
-## Installation
-To run this project locally, follow these steps:
+```text
+Sentiment_Analysis/
+├── app.py                  # Flask backend with text sentiment analysis routes
+├── requirements.txt        # Python package dependencies
+├── templates/
+│   └── index.html          # Claude-inspired chat UI
+├── static/                 # Static assets (styles, icons, images)
+└── README.md               # Project documentation
+```
 
-1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/yourusername/sentiment-analysis-webapp.git
-    cd sentiment-analysis-webapp
-    ```
+---
 
-2. **Create and activate a virtual environment**:
-    ```sh
-    python -m venv venv
-    .\venv\Scripts\activate
-    ```
+## 🚀 Getting Started
 
-3. **Install the required dependencies**:
-    ```sh
-    pip install -r requirements.txt
-    ```
+### 1. Prerequisites
+- Python 3.8 or higher installed on your system.
 
-4. **Run the application**:
-    ```sh
-    python app.py
-    ```
+### 2. Clone the Repository
+```bash
+git clone https://github.com/yourusername/Sentiment_Analysis.git
+cd Sentiment_Analysis
+```
 
-5. Open your web browser and go to `http://127.0.0.1:5000/` to see the application in action.
+### 3. Create & Activate a Virtual Environment
 
-## Usage
-1. Open the web application.
-2. Enter the text you want to analyze in the input field.
-3. Click the "Analyze" button.
-4. View the sentiment analysis results displayed on the screen.
+**macOS / Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-## Contributing
-If you would like to contribute to this project, please follow these steps:
+**Windows (PowerShell):**
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a pull request.
+### 4. Install Dependencies & Corpora
+```bash
+pip install -r requirements.txt
+python -m textblob.download_corpora
+```
 
-## Contact
-If you have any questions or feedback, please feel free to contact me at [kottarivaibhav@gmail.com].
+### 5. Run the Application
+```bash
+python app.py
+```
+
+Open your browser and navigate to:
+```
+http://127.0.0.1:5000/
+```
+
+---
+
+## 💡 How It Works
+
+1. **Input Preprocessing**: User text is cleaned of URLs, user handles, and special symbols.
+2. **Polarity Calculation**: TextBlob calculates the sentiment polarity score between `-1.0` (extremely negative) and `+1.0` (extremely positive).
+3. **Sentiment Mapping**:
+   - **Positive** (`polarity > 0`): Highlights praise, satisfaction, and optimism.
+   - **Neutral** (`polarity == 0`): Objective statements or balanced tones.
+   - **Negative** (`polarity < 0`): Criticism, frustration, or sadness.
+4. **Instant Response**: Results are returned asynchronously via JSON and displayed inline without page reloads.
+
+---
+
+## 🔌 API Reference
+
+### Text Sentiment Analysis
+- **Endpoint**: `/predict1`
+- **Method**: `POST`
+- **Payload**: `form-data` with key `txt` containing the text string.
+- **Response**:
+  ```json
+  {
+    "result": "positive",
+    "text": "I absolutely love this new update!"
+  }
+  ```
+
+---
+
+## 🤝 Contributing
+
+Contributions and feedback are always welcome!
+1. Fork this repository.
+2. Create a feature branch (`git checkout -b feature/cool-feature`).
+3. Commit your changes (`git commit -m "Add cool feature"`).
+4. Push to the branch (`git push origin feature/cool-feature`).
+5. Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
